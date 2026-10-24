@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Program Details</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Program Showcase</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Programs</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+</div>
+  <main>
+    <section class="program-detail">
+      <h2>Game</h2>
+      <p><strong>Description:</strong>Replica of class 10th project.</p>
+      <hr>
+<div class="program-card">
+  
+    
+  <pre>
+import random # using random class to include random method
+
+lost=0
+won=0
+print("Hello coder")
+ans=input("Do you want to play :) ")
+
+if(ans.lower()=="yes"):
+    user_ch=input("Enter \"rock\", \"paper\", \"scissor\" or \"q\" to quit :) ") # initially taking input to enter loop
+   
+    while(user_ch!='q'):
+        
+        
+        cmp_ch=random.randrange(0,3) #using random method to generate computer choice
+        weapon=["rock","paper","scissor"] #declaring all weapons in a list
+        
+        
+        #if user choose rock
+        if(user_ch.lower()=="rock"):
+            
+            if(cmp_ch==0): #rock
+                print("it's a tie")
+                print("Computer choose",weapon[cmp_ch])
+           
+            if(cmp_ch==1): #paper
+                print("You Loose")
+                print("Computer choose",weapon[cmp_ch])
+                lost+=1
+           
+            if(cmp_ch==2): #scissor
+                print("You Won")
+                print("Computer choose",weapon[cmp_ch])
+                won+=1
+        
+
+        #if user choose paper
+        if(user_ch.lower()=="paper"):
+
+            if(cmp_ch==0): #rock
+                print("You Won")
+                print("Computer choose",weapon[cmp_ch])
+                won+=1
+
+            if(cmp_ch==1): #paper
+                print("it's a tie")
+                print("Computer choose",weapon[cmp_ch])
+
+            if(cmp_ch==2): #scissor
+                print("You Loose")
+                print("Computer choose",weapon[cmp_ch])
+                lost+=1
+
+
+        #if user choose scissor
+        if(user_ch.lower()=="scissor"):
+
+            if(cmp_ch==0): #rock
+                print("You Loose")
+                print("Computer choose",weapon[cmp_ch])
+                lost+=1
+
+            if(cmp_ch==1): #paper  
+                print("You Won")
+                print("Computer choose",weapon[cmp_ch])
+                won+=1
+
+            if(cmp_ch==2): #scissor
+                print("it's a tie")
+                print("Computer choose",weapon[cmp_ch])
+
+
+        user_ch=input("Enter \"rock\", \"paper\", \"scissor\" or \"q\" to quit :) ") # again to take input
+
+
+print("You won",won,"times")
+print("You won",lost,"times")
+
+
+if(won>lost):
+    print("You won by",(won-lost),"points")
+if(lost>won):
+    print("You losy by",(lost-won),"points")
+if(won>0 and lost>0 and won==lost):
+    print("It's a tie")
+
+
+print("Goodbye!")
+
+<h2>
+<p><strong>Online compiled code:</strong></p><a href="https://www.programiz.com/online-compiler/2Je3wGyBm7Ax6">Click Here</a>
+</h2>
+  </pre>
+
+
+      </div>
+    </section>
+  </main>
+</body>
+</html>

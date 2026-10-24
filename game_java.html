@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Program Details</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Program Showcase</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Programs</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+</div>
+  <main>
+    <section class="program-detail">
+      <h2>Game</h2>
+      <p><strong>Description:</strong>Built this after my 10th boards.</p>
+      <hr>
+<div class="program-card">
+  
+    
+  <pre>
+import java.util.*;   //to import all packages
+class Rock_Paper_Scissor
+{       
+    static void GAME(int won,int lost)  //creating GAME function
+    {
+        Scanner ob=new Scanner(System.in);
+        System.out.print("Enter \"rock\", \"paper\",\"scissor\" or \"q\" to Quit : ");
+        String ch=ob.next();  //to store user weapon
+        do
+        {
+                 
+            if(ch.equalsIgnoreCase("q")) // to exit loop if user initially choose to Quit
+            break;
+
+            String weapon[]={"rock","paper","scissor"};  // declaring weapons in an array
+                
+            /*using Random package to generate random numbers to make computer choises from the above array */
+            Random rand=new Random();
+            int cmp_ch=rand.nextInt(3);
+
+            switch(ch)
+            {
+
+                /*if user choose rock */
+                case "rock":
+                    if(cmp_ch==0)  //rock
+                    {
+                        System.out.println("It's a tie");
+                        System.out.println("Computer choose "+weapon[cmp_ch]);
+                    }  
+                    else if(cmp_ch==1)  //paper
+                    {
+                        System.out.println("You lost!");
+                        System.out.println("Computer choose "+weapon[cmp_ch]);
+                        lost++;
+                    }
+                    else  //scissor
+                    {
+                        System.out.println("You won!");
+                        System.out.println("Computer choose "+weapon[cmp_ch]);
+                        won++;
+                    }
+                break; // to avoid fall through statements
+    
+    
+                /*if user chooose paper */
+                case "paper":
+                    if(cmp_ch==0) // rock
+                    {
+                        System.out.println("You won!");
+                        System.out.println("Computer choose "+weapon[cmp_ch]);
+                        won++;
+                    }
+                    else if(cmp_ch==1)  // paper
+                    {
+                        System.out.println("It's a tie");
+                        System.out.println("Computer choose "+weapon[cmp_ch]);
+                    }
+                    else // scissor
+                    {
+                        System.out.println("You lost!");
+                        System.out.println("Computer choose "+weapon[cmp_ch]);
+                        lost++;
+                    }
+                break; // to avoid fall through statements
+
+                /*if user choose scissor */
+                case "scissor":
+                    if(cmp_ch==0)  //rock
+                    {
+                        System.out.println("You lost!");
+                        System.out.println("Computer choose "+weapon[cmp_ch]);
+                        lost++;
+                    }
+                    else if(cmp_ch==1) // paper
+                    {
+                        System.out.println("You won!");
+                        System.out.println("Computer choose "+weapon[cmp_ch]);
+                        won++;
+                    }
+                    else // scissor
+                    {
+                        System.out.println("It's a tie");
+                        System.out.println("Computer choose "+weapon[cmp_ch]);
+                    }
+                break; // to avoid fall through statements
+
+            }//ending of switch statement
+              
+            System.out.print("Enter \"rock\", \"paper\",\"scissor\" or \"q\" to Quit : ");
+            ch=ob.next();
+        }while(ch.equals("rock") || ch.equals("paper") || ch.equals("scissor")); //ending of do-while loop
+       
+        System.out.println();
+        System.out.println("You won \" "+won+" \" times");
+        System.out.println("Computer won / You lost \" "+lost+" \" times");
+
+        if(won>lost)
+        {
+        System.out.println();
+        System.out.println("You are the winner!");
+        }
+       
+        if(lost>won)
+        {
+        System.out.println();
+        System.out.println("You lost!");
+        System.out.println("Better luck next time!");
+        }
+       
+        if(won==lost && won!=0 && lost!=0)
+        {
+        System.out.println();
+        System.out.println("It's a tie");
+        }
+                
+        
+    }  //ending of GAME function
+
+    public static void main(String[] args)  //declaring main method
+    {
+        Scanner ob=new Scanner(System.in);  //creating Scanner package object
+        System.out.println("Hello coder"); //a welcome message
+        System.out.print("Do you want to play :) ");  //asking user if user want to play
+        String wel=ob.next().toLowerCase();  //storing user answer
+        int won=0,lost=0;
+        
+        if(wel.equals("yes")) // if user wish to play then call the GAME function
+        {
+            GAME(won, lost);  //calling GAME function
+        }
+
+        System.out.println("Goodbye! :)");  //a Goodbye! message
+    }
+}
+
+<h2>
+<p><strong>Online compiled code:</strong></p><a href="https://www.programiz.com/online-compiler/02EzMenFUfG2q">Click Here</a>
+</h2>
+  </pre>
+
+
+      </div>
+    </section>
+  </main>
+</body>
+</html>

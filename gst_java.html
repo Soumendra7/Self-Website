@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Program Details</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Program Showcase</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Programs</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+</div>
+  <main>
+    <section class="program-detail">
+      <h2>GST</h2>
+      <p><strong>Description:</strong>This is my first project that I built this in my class 10th.</p>
+      <hr>
+<div class="program-card">
+  
+    
+  <pre>
+//Created by Soumendra Harichandan
+
+import java.util.*; //to import all packages
+
+class GST
+{
+    public static void main(String args[])  ///declaring main method
+    {
+        Scanner ob=new Scanner(System.in);  // creating Scanner class object
+        
+        System.out.println(" W E L C O M E ");
+        System.out.print("Enter your name :- ");
+        String name=ob.nextLine();     //To accept name.
+       
+        System.out.println("***********MENU***********");
+        System.out.println("1.Intra State Transaction");
+        System.out.println("2.Inter State Transaction");
+        System.out.print("Enter your choice(1 OR 2) :- ");
+        int ch,service;
+        double cost,dis,gst,value,intra,inter;
+        ch=ob.nextInt();         //To accept choice.
+       
+        if(ch<1 || ch>2)  //base case
+        {
+            System.out.println("Enter the recomendes options(1 or 2)");
+            System.exit(0); //to exit from the whole program
+        }
+            System.out.print("Enter number of services :- ");
+            service=ob.nextInt();    //To accept number of services.
+            System.out.print("Enter cost per service(in \u20B9) :- ");
+            cost=ob.nextDouble();   //To accept cost per service.
+            System.out.print("Enter discount(in %) :- ");
+            dis=ob.nextDouble();    //To accept discount.
+            System.out.print("Enter GST(in %) :- ");
+            gst=ob.nextDouble();    //To accept GST.
+           
+            System.out.println();
+            System.out.println();
+           
+            System.out.println("Here is your bill "+name);
+            System.out.println();
+           
+            if(ch==1)
+            System.out.println("Mode of transaction:- Intra State Transaction");
+            else
+            System.out.println("Mode of transaction:- Inter State Transaction");
+            System.out.println("Number of services :- "+service);
+            System.out.println("Cost per service :- \u20B9"+cost);
+            System.out.println("Discount :- "+dis+"%");
+            System.out.println("GST :- "+gst+"%");
+        switch(ch)
+        {
+            case 1:               //For intra state Transaction
+            cost=cost*service;
+            System.out.println("Cost for services :- \u20B9"+cost);
+            value=cost-(cost*(dis/100));
+            System.out.println("Discounted value :- \u20B9"+value);
+            intra=value*(gst/100);
+            System.out.println("SGST :- \u20B9"+(intra/2));
+            System.out.println("CGST :- \u20B9"+(intra/2));
+            System.out.println("Total GST :- \u20B9"+intra);
+            System.out.println("Total bil including GST :- \u20B9"+(value+intra));
+            break;
+            case 2:             //For Inter State Transaction
+            cost=cost*service;
+            System.out.println("Cost for services :- \u20B9"+cost);
+            value=cost-(cost*(dis/100));
+            System.out.println("Discounted value :- \u20B9"+value);
+            inter=value*(gst/100);
+            System.out.println("IGST :- \u20B9"+inter);
+            System.out.println("Total GST :- \u20B9"+inter);
+            System.out.println("Total bil including GST :- \u20B9"+(value+inter));
+        }
+    }
+}
+<h2>
+<p><strong>Online compiled code:</strong></p><a href="https://www.programiz.com/online-compiler/5wQ4bfl4gTmf5">Click Here</a>
+</h2>
+  </pre>
+
+
+      </div>
+    </section>
+  </main>
+</body>
+</html>

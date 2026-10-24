@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Program Details</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Program Showcase</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Programs</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+</div>
+  <main>
+    <section class="program-detail">
+      <h2>Black Hole Word</h2>
+      <p><strong>Description:</strong>I build this in my class 10th.</p>
+      <hr>
+<div class="program-card">
+<pre>
+import java.util.*;
+
+class Black_Hole_Word
+{
+    public static void Black_Hole_Word(String str , String original_str)  //creating a recursion until we get 4
+    {
+
+        String a[] = {"one" , "two" , "three" , "four" , "five" , "six" , "seven" , "eight" , "nine" , "ten" , "eleven" , "twelve" , "thirteen" , "fourteen" , "fifteen" , "sixteen" , "seventeen" , "eighteen" , "nineteen" , "twenty"}; //creating a array to store numbers in their letter form upto 20
+
+        if(str.length() == 4)  //base case
+        {
+        System.out.println(str+" contains "+str.length()+" letters.");
+        System.out.println("Therefore, "+original_str+" is a BLACK HOLE WORD.");
+        return;
+        }
+       
+        System.out.println(str+" contains "+str.length()+" letters."); 
+        str = a[str.length()-1]; //to get the word form of a number from the declared array
+        Black_Hole_Word(str,original_str); //recursion
+
+    }
+
+    public static void main(String[] args) //declaring main function
+    {
+        Scanner ob = new Scanner(System.in);  //creating Scanner class object
+        System.out.print("Enter a word -> ");  //displaying message to user
+        String str,original_str;
+        str = ob.next();  //taking a word as input from the user
+        original_str = str;  //storing the original word entered by the user
+        Black_Hole_Word(str,original_str);  //calling recursion named -> Black_Hole_Word
+    }
+}
+
+<h2>
+<p><strong>Online compiled code:</strong></p><a href="https://www.programiz.com/online-compiler/3uygUOsOGH0Vq">Click Here</a>
+</h2>
+</pre>
+     </div>
+    </section>
+  </main>
+</body>
+</html>

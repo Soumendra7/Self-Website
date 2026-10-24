@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Program Details</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Program Showcase</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Programs</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+</div>
+  <main>
+    <section class="program-detail">
+      <h2>Periodic Table</h2>
+      <p><strong>Description:</strong>Built this after my 10th boards.</p>
+      <hr>
+<div class="program-card">
+  
+    
+  <pre>
+/*Atomic number of elements 1(Hydrogen),2(Helium),
+ 57-71(Lanthanides) & 89-103(Actinides) 
+ are exceptional */
+
+ import java.util.*;
+ 
+ class Periodic_Table
+ {
+     public static void main(String args[])
+     {
+         Scanner ob=new Scanner(System.in);
+        
+         System.out.print("Enter atomic number: ");
+         int ele=ob.nextInt();  // to take atomic number
+        
+ 
+         if(ele==1)  // for element 1(Hydrogen)
+         {
+             System.out.println("Period of element = 1");
+             System.out.println("Group of element = 1");
+             System.exit(0);
+         }
+ 
+
+         if(ele==2)  // for element 2(Helium)
+         {
+             System.out.println("Period of element = 1");
+             System.out.println("Group of element = 18");
+             System.exit(0);
+         }
+ 
+
+        if(ele>=57 && ele<=71) // for elements 57-71(Lanthanides)
+         {
+             System.out.println("Period of element = 6");
+             System.out.println("Group of element = 3");
+             System.exit(0);
+         }
+ 
+
+        if(ele>=89 && ele<=103) // for elements 89-103(Actinides)
+         {
+             System.out.println("Period of element = 7");
+             System.out.println("Group of element = 3");
+             System.exit(0);
+         }
+         
+
+         if(ele>118)  // to stop code if entered atomic number is invalid
+         {
+             System.out.println("Enter a valid atomic number!");
+             System.exit(0);
+         }
+ 
+ 
+         /*For elements having atomicnumber <= 18 */
+         int c=2;
+         if(ele<=18)
+         {
+             ele-=2;
+             while(ele>8)
+             {
+              ele-=8;
+              c++;
+             }
+             System.out.println("Period of element = "+c);
+             if(ele>2)
+             System.out.println("Group of element = "+(10+ele));
+             else
+             System.out.println("Group of element = "+ele);
+         }
+ 
+ 
+         /*For elements having atomic number >18 */
+         else
+         
+         { 
+
+             /*For periods */
+             
+             int a[]={36,54,86,118};
+             int c2=3;
+ 
+             for(int i=0;i<a.length;i++)
+             {
+                 if(ele>a[i])
+                 c2++;
+             }
+             System.out.println("Period of element = "+(c2+1));
+           
+             /*For groups */
+ 
+             int after=a[0],diff,group;
+ 
+             for(int i=0;i<a.length;i++)
+             {
+ 
+                 if(a[i]==ele)
+                 after=a[i];
+                
+                 if(a[i]<ele)
+                after=a[i+1];
+ 
+             }
+             diff=after-ele;
+ 
+             if(diff>18)
+             group=32-diff;
+ 
+             else
+             group=18-diff;
+ 
+              System.out.println("Group of element = "+group);
+         
+
+        }
+    }
+}
+
+<h2>
+<p><strong>Online compiled code:</strong></p><a href="https://www.programiz.com/online-compiler/5LhHcR5qwSTZu">Click Here</a>
+</h2>
+  </pre>
+
+
+      </div>
+    </section>
+  </main>
+</body>
+</html>

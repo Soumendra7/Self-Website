@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Program Details</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Program Showcase</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Programs</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+</div>
+  <main>
+    <section class="program-detail">
+      <h2>Cricket</h2>
+      <p><strong>Description:</strong>Built this after my 10th boards.</p>
+      <hr>
+<div class="program-card">
+  <pre>
+import java.util.Random;  //importing Random class
+import java.util. Scanner;  //importing Scanner class
+
+class Cricket  //naming class as Cricket
+{
+
+    //creating RESULT method
+    void RESULT(int num_players, String team_batting, String team_bowling, String teamA, String teamA_players[], String teamB_players[], int overs, int teamA_scores[], int teamB_scores[],String teamB)
+    {
+
+        Scanner ob = new Scanner(System.in);  //creating Scanner class object
+
+        System.out.print("\nPress the \"ENTER KEY\" TO print match details -> ");
+        String press, temp2;
+        int temp, teamA_total = 0, teamB_total = 0;
+        press = ob.nextLine();  //to take ENTER KEY as input
+        if(press.equals(""))  //if ENTER KEY is pressed
+        {
+
+            for(int i = 0 ; i < num_players ; i++)  //to get both teams total scores
+            {
+                teamA_total += teamA_scores[i];  //to get score of TEAM A
+                teamB_total += teamB_scores[i];  //to get score of TEAM B
+            }
+
+            for(int i = 0 ; i < num_players-1 ; i++)  //for sorting players scores with their names
+            {
+                for(int j = 0 ; j < num_players-i-1 ; j++)
+                {
+                    //descending order
+                    if(teamA_scores[j+1] > teamA_scores[j])  //for TEAM A
+                    {
+                        //sorting logic
+                        temp = teamA_scores[j];
+                        teamA_scores[j] = teamA_scores[j+1];
+                        teamA_scores[j+1] = temp;
+
+                        temp2 = teamA_players[j];
+                        teamA_players[j] = teamA_players[j+1];
+                        teamA_players[j+1] = temp2;
+                    }
+
+                    if(teamB_scores[j+1] > teamB_scores[j])  //for TEAM B
+                    {
+                        //sorting logic
+                        temp = teamB_scores[j];
+                        teamB_scores[j] = teamB_scores[j+1];
+                        teamB_scores[j+1] = temp;
+
+                        temp2 = teamB_players[j];
+                        teamB_players[j] = teamB_players[j+1];
+                        teamB_players[j+1] = temp2;
+                    }
+                }  //end of j loop
+            }  //end of i loop
+
+            System.out.println("\tTEAM "+teamA+"\t\t"+"TEAM "+teamB);  //to print teams names
+            for(int i = 0 ; i < num_players ; i++)
+            {
+                //printing teams players with their scores in descending order
+                System.out.println("\t"+teamA_players[i]+" -> "+teamA_scores[i]+"\t\t\t"+teamB_players[i]+" -> "+teamB_scores[i]);
+            }
+            //to print both teams total scores
+            System.out.println("\nTOTAL -> "+teamA_total+"\t\t\t"+"TOTAL -> "+teamB_total+"\n");
+            //if TEAM A won the match
+            if(teamA_total > teamB_total)
+            System.out.println("TEAM "+teamA+" won the match by "+(teamA_total - teamB_total)+" runs.\n");
+            //if TEAM B won the match
+            else if(teamA_total < teamB_total)
+            System.out.println("TEAM "+teamB+" won the match by "+(teamB_total-teamA_total)+" runs.\n");
+            //if it's a tie
+            else
+            System.out.println("It's a tie !\n");
+            //A congratulations message
+            System.out.println(":)Congratulations!\n");
+
+        }  //end of RESULT
+        else
+        {
+            //using recursion
+            RESULT(num_players, team_batting, team_bowling, teamA, teamA_players, teamB_players, overs, teamA_scores, teamB_scores, teamB);
+        
+        }
+
+    }  //end of RESULT method
+    
+
+    //creating MATCH method
+    void MATCH(int num_players, String team_batting, String team_bowling, String teamA, String teamA_players[], String teamB_players[], int overs, String teamB, int match, int teamA_scores[], int teamB_scores[])
+    {
+
+        Scanner ob = new Scanner(System.in);  //creating Scanner class object
+
+        String press;
+        int player = 0, run = 0, match1_score = 0;
+
+        System.out.print("\nPress the \"ENTER KEY\" to start MATCH "+match+" -> ");
+        press = ob.nextLine();  //to get ENTER KEY as input
+        if(press.equals(""))  //if ENTER KEY is pressed
+        {
+
+            if(team_batting.equals(teamA))  //if batting team is TEAM A
+            {
+                System.out.println("TEAM "+team_batting+" players assigned numbers :-");
+                for(int i = 0 ; i < num_players ; i++)  //to show TEAM A players assigned numbers
+                {
+                    System.out.println((i+1)+" -> "+teamA_players[i]);
+                }
+
+                //for total number of balls
+               for(int i = 1 ; i <= (overs*6) ; i++)
+               {
+                    //if the player is out && not playing the last ball || playing the first ball
+                    if((run == 999 && i != (overs*6)) || i == 1)
+                    {
+                        System.out.print("\nEnter player number -> ");
+                        player = ob.nextInt();  //to take player index
+                        System.out.println("Enter runs scored by "+teamA_players[player-1]);
+                        System.out.println("Enter \"999\" if the player got out.");
+                    }
+                    run = ob.nextInt();  //to take runs
+                    //not playing the last ball of an over  && the player is out
+                    if( i % 6 != 0 && run == 999)
+                    {
+                        System.out.print("\nEnter player number -> ");
+                        player = ob.nextInt();  //to take player index
+                        System.out.println("Enter runs scored by "+teamA_players[player-1]);
+                        System.out.println("Enter \"999\" if the player got out.");
+                        run = 0;  //not to get double input statements
+                    }
+                    //if playing the last ball of an over
+                    if(i % 6 == 0)
+                    {
+                        System.out.println("End of "+(i / 6)+" over.\n");  //to print end of an over
+                        //if the player is not out && not playing the last ball
+                        if(run != 999 && i != (overs*6))
+                        {
+                            System.out.print("Enter player number -> ");
+                            player = ob.nextInt();
+                            System.out.println("Enter runs scored by "+teamA_players[player-1]);
+                            System.out.println("Enter \"999\" if the player got out.");
+                        }
+                    }
+                    //if the player is not out
+                    if(run != 999)
+                    {
+                        teamA_scores[player-1] += run;
+                        match1_score += run;
+                    }
+               }
+            }  //end of TEAM A batting
+            else  //if batting team is TEAM B
+            {
+                System.out.println("TEAM "+team_batting+" players assigned numbers :-");
+                for(int i = 0 ; i < num_players ; i++)  //to show TEAM B players assigned numbers
+                {
+                    System.out.println((i+1)+" -> "+teamB_players[i]);
+                }
+               
+                //for total number of balls
+                for(int i = 1 ; i <= (overs*6) ; i++)
+                {
+                    //if the player is out && not playing the last ball || playing the first ball
+                    if((run == 999 && i != (overs*6)) || i == 1)
+                    {
+                        System.out.print("\nEnter player number -> ");
+                        player = ob.nextInt();  //to take player index
+                        System.out.println("Enter runs scored by "+teamB_players[player-1]);
+                        System.out.println("Enter \"999\" if the player got out.");
+                    }
+                    run = ob.nextInt();  //to take player runs
+                    //not playing the lst ball && the player is out
+                    if( i % 6 != 0 && run == 999)
+                    {
+                        System.out.print("\nEnter player number -> ");
+                        player = ob.nextInt();  //to take runs
+                        System.out.println("Enter runs scored by "+teamB_players[player-1]);
+                        System.out.println("Enter \"999\" if the player got out.");
+                        run = 0;  //not to get double input statements
+                    }
+                    //if playing the last ball of an over
+                    if(i % 6 == 0)
+                    {
+                        System.out.println("End of "+(i / 6)+" over.\n");  //to print end of an over
+                        //if the player is not out && not playing the last ball
+                        if(run != 999 && i != (overs*6))
+                        {
+                            System.out.print("Enter player number -> ");
+                            player = ob.nextInt();
+                            System.out.println("Enter runs scored by "+teamB_players[player-1]);
+                            System.out.println("Enter \"999\" if the player got out.");
+                        }
+                    }
+                    //if the player is not out
+                    if(run != 999)
+                    {
+                        teamB_scores[player-1] += run;  //to add individual scores
+                        match1_score += run;  //to calculate match 1 score
+                    }
+                }
+            }  //end of TEAM B batting
+
+            match++;  //to check for the match number
+
+            if(match == 2)  //for second match
+            {
+                System.out.println("TEAM "+team_batting+" scored "+match1_score+".");  //to print batting team score
+                //to print the score bowling team need to win the match
+                System.out.println("TEAM "+team_bowling+" need \""+(match1_score+1)+"\" to win the match.\n");
+
+                team_batting = team_bowling;  //storing BOWLING TEAM as the next match BATTING team
+                team_bowling = team_batting;  //storing BATTING TEAM as the next match BOWLING team
+
+                Cricket obj = new Cricket();  //creating Cricket class object
+                //calling MATCH method
+                obj.MATCH(num_players, team_batting, team_bowling, teamA, teamA_players, teamB_players, overs, teamB, match, teamA_scores, teamB_scores);
+            }
+            else  //to print results after second match
+            {
+
+                //calling RESULT method
+                RESULT(num_players, team_batting, team_bowling, teamA, teamA_players, teamB_players, overs, teamA_scores, teamB_scores, teamB);
+           
+            }
+       
+        }  //end of MATCH
+        else  //if ENTER KEY is not pressed
+        {
+
+            //using recursion
+            MATCH(num_players, team_batting, team_bowling, teamA, teamA_players, teamB_players, overs, teamB, match, teamA_scores, teamB_scores);
+       
+        }
+        
+    }  //end of MATCH method
+    
+
+    //creating TOSS method to toss the coin
+    public static void TOSS(String teamA, String teamA_toss, String teamB_toss, String teamB, int num_players, String teamA_players[], String teamB_players[], int overs)
+    {
+
+        Scanner ob = new Scanner(System.in);  //creating Scanner class object
+
+        System.out.println();  //to have spaces between statements
+
+        String press, toss_winner, toss_looser, toss_winner_ch, toss_winner_match, team_batting = " ", team_bowling = " ";
+        int toss, match;
+        int teamA_scores [] = new int[num_players];  //for team A players scores
+        int teamB_scores [] = new int[num_players];  //for team B players scores
+
+        System.out.print("Press the \"ENTER KEY\" to toss the coin -> ");
+        press = ob.nextLine();  //to take ENTER KEY as input
+        if(press.equals(""))  //if ENTER KEY is pressed
+        {
+
+            Random rand = new Random();  //creating Random class object
+            toss = rand.nextInt(0,2);  //generating a random number
+
+            //checking toss winner
+            if(toss == 0)  //if toss = 0
+            {
+                toss_winner = teamA;  //storing TEAM A name as toss winning TEAM
+                toss_winner_ch = teamA_toss;  //storing TEAM A choice
+                toss_looser = teamB;  //storing TEAM B name as toss loosing TEAM
+            }
+            else  //if toss = 1
+            {
+                toss_winner = teamB;  //storing TEAM B name as toss winning TEAM
+                toss_winner_ch = teamB_toss;  //storing TEAM B choice
+                toss_looser = teamA;  //storing TEAM A name as toss loosing TEAM
+            }
+
+                System.out.println("It's "+toss_winner_ch+" !");  //showing toss winner toss choice
+                System.out.print("\"TEAM "+toss_winner+"\" what would you like to choose(BATTING/BOWLING) -> ");
+                toss_winner_match = ob.next();  //to get toss winner match choice
+                
+                if(toss_winner_match.equalsIgnoreCase("BATTING"))
+                {
+                    team_batting = toss_winner;  //storing batting team name
+                    team_bowling = toss_looser;  //storing bowling team name
+                }
+                if(toss_winner_match.equalsIgnoreCase("BOWLING"))
+                {
+                    team_bowling = toss_winner;  //storing bowling team name
+                    team_batting = toss_looser;  //storing batting team name
+                }
+            
+            match = 1;  //to start match 1
+            Cricket obj = new Cricket();  //creating Cricket class object
+            obj.MATCH(num_players, team_batting, team_bowling, teamA, teamA_players, teamB_players, overs, teamB, match, teamA_scores, teamB_scores);  //calling MATCH method
+
+        }
+        else  //if ENTER KEY is not pressed
+        {
+
+            //using recursion
+            TOSS(teamA, teamA_toss, teamB_toss, teamB, num_players, teamA_players, teamB_players, overs);
+
+        }
+
+    }//ending of TOSS function
+
+    public static void main(String[] args)  //main function
+    {
+
+        Scanner ob = new Scanner(System.in);  //creating Scanner class object
+
+        String teamA, teamB, teamA_toss, teamB_toss;
+        int overs, num_players;
+        System.out.print("ENTER TEAM A name -> ");
+        teamA = ob.nextLine();  //to get TEAM A name
+        System.out.print("ENTER TEAM B name -> ");
+        teamB = ob.nextLine();  //to get TEAM B name
+        System.out.print("Enter total number of overs -> ");
+        overs = ob.nextInt();  //to get total number of overs
+        System.out.print("Enter total number of players in a team - > ");
+        num_players = ob.nextInt();  //to get total number of players in a team
+
+        String teamA_players [] = new String[num_players];  //for team A players names
+        String teamB_players [] = new String[num_players];  //for team B players names
+
+        System.out.println();  //to have space between statements
+
+        for(int i = 0 ; i < num_players ; i++)  //to get TEAM A players names
+        {
+            System.out.print("Enter \"TEAM "+teamA+"\" player name -> "+(i+1)+") ");
+            teamA_players[i] = ob.next();
+        }
+
+        System.out.println();  //to have space between statements
+
+        for(int i = 0 ; i < num_players ; i++)  //to get TEAM B players names
+        {
+            System.out.print("Enter \"TEAM "+teamB+"\" player name -> "+(i+1)+") ");
+            teamB_players[i] = ob.next();
+        }
+
+        System.out.print("\nTEAM "+teamA+" what would you like to choose(HEADS/TAILS) -> ");
+        teamA_toss = ob.next();  //to take TEAM A toss choice
+        System.out.print("TEAM "+teamB+" what would you like to choose(HEADS/TAILS) -> ");
+        teamB_toss = ob.next();  //to take TEAM B toss choice
+
+        //calling TOSS function
+        TOSS(teamA, teamA_toss, teamB_toss, teamB, num_players, teamA_players, teamB_players, overs);
+
+    }  //ending of main function
+  
+    
+}//ending of Cricket class
+
+<h2>
+<p><strong>Online compiled code:</strong></p><a href="https://www.programiz.com/online-compiler/0Q1Xibk5bj9ra">Click Here</a>
+</h2>
+  </pre>
+
+
+      </div>
+    </section>
+  </main>
+</body>
+</html>
