@@ -1,151 +1,704 @@
-/* Base reset */
+/* ================================================
+   1. GLOBAL RESET
+   Removes default browser spacing
+================================================ */
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ================================================
+   2. COLOR VARIABLES
+   Change your theme colors from here
+================================================ */
+
+:root {
+    --bg-dark: #080d1a;
+    --bg-card: rgba(20, 32, 55, 0.75);
+
+    --primary: #00d9ff;
+    --secondary: #6366f1;
+    --accent: #00ffc3;
+
+    --text-main: #f8fafc;
+    --text-muted: #a7b4ca;
+
+    --border: rgba(148, 163, 184, 0.18);
+}
+
+
+/* ================================================
+   3. BODY AND BACKGROUND
+================================================ */
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
-  color: #fff;
-  background: #0d0d0d;
-  position: relative;
-  overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-main);
+    background: var(--bg-dark);
+
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+
+    isolation: isolate;
 }
 
-/* Animated background gradient */
+/* Animated background */
 .background {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: radial-gradient(circle at top left, #1f1c2c, #928dab);
-  background-size: 400% 400%;
-  animation: gradientMove 20s ease infinite;
-  z-index: -1;
-  filter: blur(20px);
-  opacity: 0.8;
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(0, 217, 255, 0.13),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 85% 70%,
+            rgba(99, 102, 241, 0.17),
+            transparent 40%
+        ),
+        #080d1a;
+
+    z-index: -1;
+    pointer-events: none;
 }
 
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
 
-/* Header */
+/* ================================================
+   4. HEADER
+   Website title and navigation background
+================================================ */
+
 header {
-  padding: 20px;
-  text-align: center;
-  background: rgba(30, 30, 30, 0.9);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
-  border-bottom: 1px solid #333;
+    position: relative;
+    min-height: 190px;
+    padding: 30px 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(10, 17, 32, 0.88);
+    border-bottom: 1px solid var(--border);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
 }
 
+/* Website title */
 header h1 {
-  font-size: 2.2rem;
-  color: #00ffc8;
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    font-weight: 800;
+    color: var(--accent);
+
+    letter-spacing: -1px;
+    text-align: center;
+
+    text-shadow: 0 0 25px rgba(0, 255, 195, 0.15);
 }
+
+
+/* ================================================
+   5. PROFILE LOGO
+   Circular profile image at the top-left
+================================================ */
+
+.logo {
+    position: absolute;
+    top: 25px;
+    left: 30px;
+
+    width: 90px;
+    height: 90px;
+
+    display: block;
+    z-index: 10;
+}
+
+.logo img {
+    width: 90px;
+    height: 90px;
+
+    max-width: 90px;
+    max-height: 90px;
+
+    object-fit: cover;
+    object-position: center;
+
+    display: block;
+    border-radius: 50%;
+
+    padding: 3px;
+    border: 2px solid var(--primary);
+
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.25);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+/* Logo hover animation */
+.logo img:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 30px rgba(0, 217, 255, 0.5);
+}
+
+
+/* ================================================
+   6. NAVIGATION BAR
+   Interactive neon hover effect
+================================================ */
 
 nav ul {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  margin-top: 10px;
-  list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 35px;
+    margin-top: 15px;
+
+    list-style: none;
 }
 
+/* Navigation links */
 nav a {
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: 600;
-  position: relative;
+    position: relative;
+    display: inline-block;
+
+    color: #eaebe5;
+    text-decoration: none !important;
+
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 8px 2px;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease,
+        text-shadow 0.3s ease;
 }
 
+/* Animated gradient underline */
 nav a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  background: #00ffc8;
-  left: 0;
-  bottom: -4px;
-  transition: 0.3s ease;
+    content: "";
+
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+
+    width: 0;
+    height: 3px;
+
+    background: linear-gradient(
+        90deg,
+        var(--primary),
+        var(--accent)
+    );
+
+    border-radius: 10px;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px var(--primary);
+
+    transition: width 0.35s ease;
 }
 
+/* Hover text animation */
+nav a:hover {
+    color: var(--accent) !important;
+    transform: translateY(-3px);
+
+    text-shadow: 0 0 12px rgba(0, 255, 195, 0.5);
+}
+
+/* Underline expands from center */
 nav a:hover::after {
-  width: 100%;
+    width: 100%;
 }
 
-/* Main content */
+/* Keyboard navigation accessibility */
+nav a:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 5px;
+    border-radius: 4px;
+}
+
+/* Click animation */
+nav a:active {
+    transform: translateY(0) scale(0.96);
+}
+
+
+/* ================================================
+   7. MAIN CONTENT
+================================================ */
+
 main {
-  padding: 40px 20px;
+    width: 100%;
+    max-width: 1500px;
+
+    margin: auto;
+    padding: 55px 30px 70px;
 }
 
+/* Main heading */
 main h2 {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 40px;
-  color: #ffee58;
+    text-align: center;
+
+    font-size: clamp(1.6rem, 3vw, 2.3rem);
+    font-weight: 800;
+    color: #facc15;
+
+    margin-bottom: 40px;
+    letter-spacing: -0.5px;
 }
 
-/* Grid layout */
+
+/* ================================================
+   8. PROJECT GRID
+   Automatically adjusts card columns
+================================================ */
+
 .program-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-  padding: 0 10px;
+    display: grid;
+
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(280px, 1fr)
+    );
+
+    gap: 25px;
+    width: 100%;
+    padding: 0 5px;
 }
 
-/* Card style */
+
+/* ================================================
+   9. PROJECT CARDS
+   Glassmorphism design
+================================================ */
+
 .program-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  padding: 25px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 30px rgba(0, 255, 255, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+
+    padding: 28px 25px;
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
 }
 
+/* Decorative gradient line on top */
+.program-card::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background: linear-gradient(
+        90deg,
+        var(--primary),
+        var(--secondary),
+        var(--accent)
+    );
+}
+
+/* Card hover animation */
 .program-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 40px rgba(0, 255, 255, 0.2);
+    transform: translateY(-8px);
+    border-color: rgba(0, 217, 255, 0.45);
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.35),
+        0 0 25px rgba(0, 217, 255, 0.08);
 }
 
+/* Card heading */
 .program-card h3 {
-  color: #00ffc8;
-  margin-bottom: 10px;
+    color: var(--accent);
+    font-size: 1.2rem;
+    font-weight: 700;
+
+    margin-bottom: 12px;
 }
 
+/* Card description */
 .program-card p {
-  color: #ccc;
-  margin-bottom: 15px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+
+    margin-bottom: 20px;
 }
 
-/* Buttons */
+
+/* ================================================
+   10. BUTTONS
+   Gradient buttons with hover animation
+================================================ */
+
 .btn {
-  display: inline-block;
-  padding: 10px 18px;
-  border-radius: 6px;
-  background: linear-gradient(135deg, #00ffc8, #00bfff);
-  color: #000;
-  font-weight: bold;
-  text-decoration: none;
-  transition: background 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+    padding: 11px 23px;
+
+    border-radius: 9px;
+
+    background: linear-gradient(
+        135deg,
+        var(--primary),
+        #38bdf8
+    );
+
+    color: #06111f;
+    font-weight: 700;
+    font-size: 0.95rem;
+
+    text-decoration: none;
+    border: none;
+
+    box-shadow: 0 5px 20px rgba(0, 217, 255, 0.15);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        filter 0.3s ease;
 }
 
+/* Button hover */
 .btn:hover {
-  background: linear-gradient(135deg, #00bfff, #00ffc8);
-  transform: scale(1.05);
+    transform: translateY(-3px);
+
+    box-shadow: 0 8px 25px rgba(0, 217, 255, 0.3);
+    filter: brightness(1.1);
 }
 
-/* Footer */
+/* Button click */
+.btn:active {
+    transform: scale(0.96);
+}
+
+
+/* ================================================
+   11. TABLE CONTAINER
+================================================ */
+
+.table-container {
+    width: 90%;
+    max-width: 850px;
+
+    margin: 65px auto;
+    overflow-x: auto;
+
+    border: 1px solid rgba(0, 217, 255, 0.25);
+    border-radius: 15px;
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+
+    background: #101a2d;
+    color: var(--text-main);
+
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Table heading background */
+thead {
+    background: linear-gradient(
+        90deg,
+        #123b70,
+        #1e40af
+    );
+}
+
+/* Table heading cells */
+th {
+    padding: 17px;
+    text-align: center;
+
+    color: white;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+/* Table data cells */
+td {
+    padding: 15px;
+    text-align: center;
+
+    color: #cbd5e1;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+/* Alternating row colors */
+tbody tr:nth-child(even) {
+    background: #142239;
+}
+
+tbody tr:nth-child(odd) {
+    background: #101a2d;
+}
+
+/* Table hover effect */
+tbody tr:hover {
+    background: #1c3558;
+    transition: background 0.3s ease;
+}
+
+/* Remove final row border */
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* ================================================
+   12. FOOTER
+================================================ */
+
 footer {
-  text-align: center;
-  padding: 20px;
-  background-color: rgba(20, 20, 20, 0.95);
-  color: #aaa;
-  margin-top: 40px;
-  font-size: 0.9rem;
+    margin-top: 50px;
+    padding: 25px 15px;
+
+    text-align: center;
+
+    background: rgba(10, 17, 32, 0.9);
+    color: var(--text-muted);
+
+    border-top: 1px solid var(--border);
+    font-size: 0.9rem;
+}
+
+
+/* ================================================
+   13. GENERAL LINK STYLING
+================================================ */
+
+/* Keep links consistent with the website theme */
+a {
+    color: inherit;
+}
+
+/* Optional: remove underline from an element with id="underline" */
+#underline {
+    text-decoration: none;
+}
+
+/* Subtle glow for ordinary links inside main content */
+main a:not(.btn) {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+
+    transition:
+        color 0.3s ease,
+        text-shadow 0.3s ease;
+}
+
+/* Glow appears when the visitor hovers over a link */
+main a:not(.btn):hover {
+    color: var(--accent);
+
+    text-shadow:
+        0 0 5px rgba(0, 217, 255, 0.65),
+        0 0 12px rgba(0, 217, 255, 0.45),
+        0 0 20px rgba(0, 217, 255, 0.25);
+}
+
+/* Visible keyboard focus */
+main a:not(.btn):focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
+    border-radius: 3px;
+}
+
+/* External link indicator */
+main a:not(.btn)::after {
+    content: "↗";
+}
+
+
+/* ================================================
+   14. LINKEDIN IFRAME AND CONTENT LAYOUT
+================================================ */
+
+/* Main two-column layout */
+.content-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 30px;
+    margin-top: 20px;
+}
+
+/* Left side cards */
+.cards-container {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+/* Right side LinkedIn iframe */
+.iframe {
+    flex: 0 0 504px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* LinkedIn iframe */
+.iframe iframe {
+    max-width: 100%;
+}
+
+
+/* ================================================
+   15. MOBILE RESPONSIVENESS
+   Adjusts layout for smaller screens
+================================================ */
+
+@media (max-width: 600px) {
+
+    /* Header adjustments */
+    header {
+        padding: 110px 15px 25px;
+        min-height: 220px;
+    }
+
+    /* Center profile logo */
+    .logo {
+        top: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* Smaller circular profile image */
+    .logo img {
+        width: 65px;
+        height: 65px;
+
+        max-width: 65px;
+        max-height: 65px;
+    }
+
+    /* Smaller heading */
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    /* Navigation spacing */
+    nav ul {
+        gap: 20px;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+    }
+
+    /* Main content */
+    main {
+        padding: 40px 15px;
+    }
+
+    main h2 {
+        margin-bottom: 30px;
+    }
+
+    /* Single-column project cards */
+    .program-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .program-card {
+        padding: 23px 20px;
+    }
+
+    /* Responsive table */
+    .table-container {
+        width: 100%;
+        margin: 40px auto;
+    }
+
+    th,
+    td {
+        padding: 12px;
+    }
+}
+
+
+/* ================================================
+   16. TABLET AND IFRAME RESPONSIVENESS
+================================================ */
+
+@media (max-width: 900px) {
+
+    /* Stack cards and iframe vertically */
+    .content-container {
+        flex-direction: column;
+    }
+
+    /* Cards take full width */
+    .cards-container {
+        width: 100%;
+    }
+
+    /* Iframe takes full width */
+    .iframe {
+        flex: 1;
+        width: 100%;
+    }
+}
+
+
+/* ================================================
+   17. ACCESSIBILITY
+   Reduces animations when requested by the visitor
+================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
+    }
 }
